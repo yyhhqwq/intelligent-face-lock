@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备日志管理 - K230人脸识别门禁系统</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>设备日志管理</h1>
+            <p class="subtitle">查看和管理所有人脸识别设备的运行日志与上传记录</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">今日通行</div>
+                <div class="stat-value" id="today-traffic">0</div>
+                <div class="stat-trend positive" id="traffic-trend">↑ +0%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">在线设备</div>
+                <div class="stat-value" id="online-devices">0</div>
+                <div class="stat-sub" id="total-devices">共 0 台设备</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">活体通过率</div>
+                <div class="stat-value" id="liveness-rate">0%</div>
+                <div class="stat-trend positive" id="liveness-trend">↑ +0%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">陌生人报警</div>
+                <div class="stat-value warning" id="stranger-alerts">0</div>
+                <div class="stat-sub">今日需关注</div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="filters">
+                <select id="filter-device" class="filter-select">
+                    <option value="">全部设备</option>
+                </select>
+                <input type="date" id="filter-date" class="filter-input">
+                <select id="filter-status" class="filter-select">
+                    <option value="">全部状态</option>
+                    <option value="success">成功</option>
+                    <option value="abnormal">异常</option>
+                </select>
+            </div>
+            <div class="actions">
+                <input type="text" id="search-input" class="search-input" placeholder="搜索设备ID / 日志...">
+                <button class="btn btn-primary" onclick="exportCSV()">↑ 上传日志</button>
+                <button class="btn btn-outline" onclick="exportCSV()">导出</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>设备ID</th>
+                        <th>设备名称</th>
+                        <th>事件类型</th>
+                        <th>详情</th>
+                        <th>上传时间</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody id="events-tbody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-wrapper">
+            <span class="pagination-info" id="pagination-info">共 0 条记录，第 1 / 1 页</span>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
